@@ -13,10 +13,8 @@ const chatGPT = new ChatGPTClass();
 /**
  * Flows
  */
-const flowPrincipal = require("./flows/flowPrincipal");
-const flowAgente = require("./flows/flowAgente");
-const { flowReparacion } = require("./flows/flowReparacion");
-const { flowOfertas } = require("./flows/flowOfertas");
+const flowInit = require("./flows/custom-flows/flowInit");
+const { flowChatGPT } = require("./flows/custom-flows/flowChatGPT");
 
 /**
  * Funcion principal
@@ -25,10 +23,8 @@ const main = async () => {
   const adapterDB = new MockAdapter();
 
   const adapterFlow = createFlow([
-    flowPrincipal,
-    flowAgente,
-    flowReparacion(chatGPT),
-    flowOfertas(chatGPT),
+    flowInit,
+    flowChatGPT(chatGPT),
   ]);
   
   const adapterProvider = createProvider(BaileysProvider);
