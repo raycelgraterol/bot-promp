@@ -15,6 +15,11 @@ const chatGPT = new ChatGPTClass();
  */
 const flowInit = require("./flows/custom-flows/flowInit");
 const { flowChatGPT } = require("./flows/custom-flows/flowChatGPT");
+const { flowChatGemini } = require("./flows/custom-flows/flowChatGemini");
+const { flowERP } = require("./flows/custom-flows/flowERP");
+const flotNotes = require("./flows/custom-flows/flowNotes");
+const flowMedias = require("./flows/custom-flows/flowMedias");
+
 
 /**
  * Funcion principal
@@ -24,9 +29,13 @@ const main = async () => {
 
   const adapterFlow = createFlow([
     flowInit,
+    flotNotes,
+    flowMedias,
     flowChatGPT(chatGPT),
+    flowChatGemini(),
+    flowERP(),
   ]);
-  
+
   const adapterProvider = createProvider(BaileysProvider);
 
   createBot({
