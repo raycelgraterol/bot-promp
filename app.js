@@ -17,6 +17,7 @@ const flowInit = require("./flows/custom-flows/flowInit");
 const { flowChatGPT } = require("./flows/custom-flows/flowChatGPT");
 const { flowChatGemini } = require("./flows/custom-flows/flowChatGemini");
 const { flowERP } = require("./flows/custom-flows/flowERP");
+const { flowRestaurant } = require("./flows/custom-flows/flowRestaurant");
 const flotNotes = require("./flows/custom-flows/flowNotes");
 const flowMedias = require("./flows/custom-flows/flowMedias");
 
@@ -34,6 +35,7 @@ const main = async () => {
     flowChatGPT(chatGPT),
     flowChatGemini(),
     flowERP(),
+    flowRestaurant(),
   ]);
 
   const adapterProvider = createProvider(BaileysProvider);

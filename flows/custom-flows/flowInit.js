@@ -10,7 +10,8 @@ const flowInit = addKeyword([EVENTS.WELCOME, 'menu'])
       "",
       "*1* Conversar con Chat GPT.",
       "*2* Conversar con Gemini.",
-      "*3* Conectar con ERP."
+      "*3* Conectar con ERP.",
+      "*4* Conectar con Gran Brasa!.",
     ]
   )
   .addAnswer('Responda con el numero de la opcion!')
