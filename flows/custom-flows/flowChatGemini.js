@@ -1,5 +1,5 @@
 const { addKeyword } = require("@bot-whatsapp/bot");
-const { sendMessageGeminie } = require("../../api/custom-calls/googleGemini.service");
+const { sendMessageGeminie, geminiVision } = require("../../api/custom-calls/googleGemini.service");
 
 /**
  * Exportamos
@@ -29,7 +29,7 @@ module.exports = {
             return endFlow();
           }
 
-          const textFromAI = await sendMessageGeminie(ctx.body);
+          const textFromAI = await sendMessageGeminie(ctx.body);          
 
           await fallBack(textFromAI);
 

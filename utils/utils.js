@@ -19,7 +19,27 @@ const handlerAI = async (ctx) => {
    */
 };
 
+const handlerImageAI = async (ctx) => {
+
+  try {
+    const imageBuffer = await downloadMediaMessage(ctx, "buffer");
+    const pathTmpJpg = `${process.cwd()}/tmp/image-${Date.now()}.jpg`;
+    await fs.writeFile(pathTmpJpg, imageBuffer);
+
+    const imageBase64 = imageBuffer.toString('base64');
+
+    return imageBase64;
+
+  } catch (e) {
+    console.error('Error getting FILE:', e);
+    throw e;
+  }
+
+
+};
+
+
 const delay = (miliseconds) =>
   new Promise((res) => setTimeout(res, miliseconds));
 
-module.exports = { handlerAI, delay };
+module.exports = { handlerAI, handlerImageAI, delay };

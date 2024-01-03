@@ -1,22 +1,28 @@
 const { addKeyword, EVENTS } = require("@bot-whatsapp/bot");
 const { handlerAI } = require("../../utils/utils");
 
-const flowNotaDeVoz = addKeyword(EVENTS.VOICE_NOTE)
-    .addAction(async (ctx, ctxFn) => {
-        
-        console.log(`[Flow Smart VoiceNote]`)
-        //const employeesAddon = ctxFn.extensions.employeesAddon
-        
-        await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
-        const text = await handlerAI(ctx);
-        console.log(text)
 
-        //const currentState = ctxFn.state.getMyState();
-        // const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
-        // const { employee, answer } = await employeesAddon.determine(fullSentence);
-        // ctxFn.state.update({ answer });
-        // if (employee) employeesAddon.gotoFlow(employee, ctxFn);
-        // if (!employee) ctxFn.gotoFlow(notEmployee);
-    });
+/**
+ * Exportamos
+ * @param {*} chatgptClass
+ * @returns
+ */
+module.exports = {
+    flowNotes: (chatgptClass) => {
+        return addKeyword(EVENTS.VOICE_NOTE)
+        .addAction(async (ctx, ctxFn) => {
 
-module.exports = flowNotaDeVoz;
+            console.log(`[Flow Smart VoiceNote]`)
+
+            await ctxFn.flowDynamic("Procesando nota de voz...⌛");
+            //Raw text 
+            const text = await handlerAI(ctx);
+
+            const prettyText = await chatgptClass.handleMsgChatGPT(`Format the following text adapted for a WhatsApp message also add emojis: ${text}`);
+
+            await ctxFn.flowDynamic(prettyText.text);
+
+
+        });
+    },
+};

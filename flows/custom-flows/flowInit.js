@@ -1,19 +1,23 @@
 const { addKeyword, EVENTS } = require("@bot-whatsapp/bot");
 
-const flowInit = addKeyword([EVENTS.WELCOME, 'menu'])
-  .addAnswer('Bivenido a *iVicanst Tech*', {
-    media: 'https://ivicsanttech.com/ivicsant-logo.png',
-  })
+const flowInit = addKeyword([EVENTS.WELCOME, 'menu', 'salir', 'volver'])
   .addAnswer(
     [
-      "¿Como podemos ayudarte?",
+      "Bienvenido a *iVicanst Tech*",
       "",
+      "¿Como podemos ayudarte?",
       "*1* Conversar con Chat GPT.",
       "*2* Conversar con Gemini.",
       "*3* Conectar con ERP.",
       "*4* Conectar con Gran Brasa!.",
-    ]
-  )
-  .addAnswer('Responda con el numero de la opcion!')
+      " ",
+      "Responda con el *NUMERO* de la opcion!"
+    ],
+    {
+      media: 'https://ivicsanttech.com/ivicsant-logo.png',
+    }
+  ).addAction(async (ctx) => {
+    console.log(`Connected phone: ${ctx.from}`);
+  });
 
 module.exports = flowInit;

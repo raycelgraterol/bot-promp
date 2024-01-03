@@ -14,12 +14,15 @@ const chatGPT = new ChatGPTClass();
  * Flows
  */
 const flowInit = require("./flows/custom-flows/flowInit");
+const { flowExchangeRate } = require("./flows/custom-flows/flowGeneral")
+
 const { flowChatGPT } = require("./flows/custom-flows/flowChatGPT");
 const { flowChatGemini } = require("./flows/custom-flows/flowChatGemini");
 const { flowERP } = require("./flows/custom-flows/flowERP");
 const { flowRestaurant } = require("./flows/custom-flows/flowRestaurant");
-const flotNotes = require("./flows/custom-flows/flowNotes");
-const flowMedias = require("./flows/custom-flows/flowMedias");
+const { flowNotes } = require("./flows/custom-flows/flowNotes");
+const { flowMedias } = require("./flows/custom-flows/flowMedias");
+
 
 
 /**
@@ -30,8 +33,9 @@ const main = async () => {
 
   const adapterFlow = createFlow([
     flowInit,
-    flotNotes,
-    flowMedias,
+    flowExchangeRate(),
+    flowMedias(),
+    flowNotes(chatGPT),
     flowChatGPT(chatGPT),
     flowChatGemini(),
     flowERP(),
