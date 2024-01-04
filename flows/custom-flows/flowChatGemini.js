@@ -23,10 +23,10 @@ module.exports = {
       .addAnswer(
         `Ya puedes escribir y conversar con Chat de Google Gemini...`,
         { capture: true },
-        async (ctx, { endFlow, fallBack }) => {
+        async (ctx, { gotoFlow, fallBack }) => {
 
-          if(ctx.body.toLowerCase().includes('menu')) {
-            return endFlow();
+          if(ctx.body.toLowerCase().includes('menu') || ctx.body.toLowerCase().includes('salir') || ctx.body.toLowerCase().includes('volver')) {
+            return gotoFlow(flowInit);
           }
 
           const textFromAI = await sendMessageGeminie(ctx.body);          

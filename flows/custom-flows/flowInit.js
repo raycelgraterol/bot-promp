@@ -11,6 +11,9 @@ const flowInit = addKeyword([EVENTS.WELCOME, 'menu', 'salir', 'volver'])
       "*3* Conectar con ERP.",
       "*4* Conectar con Gran Brasa!.",
       " ",
+      "Envia una nota de VOZ 🔊 o una Imagen 📸 tambien podre ayudarte.",
+      "Consulta Tasa Monitor o BCV. 💸",
+      " ",
       "Responda con el *NUMERO* de la opcion!"
     ],
     {

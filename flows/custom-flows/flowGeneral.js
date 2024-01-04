@@ -8,7 +8,7 @@ const { getLastValue, getValuesMonitor } = require("../../api/custom-calls/bcvEx
 module.exports = {
     flowExchangeRate: () => {
         return addKeyword(["monitor", "bcv"], {
-            sensitive: true,
+            sensitive: false,
         })
             .addAction(async (ctx, { endFlow, flowDynamic, fallBack }) => {
 

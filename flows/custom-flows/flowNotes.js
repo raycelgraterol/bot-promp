@@ -20,8 +20,12 @@ module.exports = {
 
             const prettyText = await chatgptClass.handleMsgChatGPT(`Format the following text adapted for a WhatsApp message also add emojis: ${text}`);
 
+            const responseUseChat = await chatgptClass.handleMsgChatGPT(`genera una respuesta sobre esto: ${text}`);
+
             await ctxFn.flowDynamic(prettyText.text);
 
+            await ctxFn.flowDynamic("Respuesta del chat: ");
+            await ctxFn.flowDynamic(responseUseChat.text);
 
         });
     },
