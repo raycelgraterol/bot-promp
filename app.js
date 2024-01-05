@@ -23,7 +23,7 @@ const { flowRestaurant } = require("./flows/custom-flows/flowRestaurant");
 const { flowNotes } = require("./flows/custom-flows/flowNotes");
 const { flowMedias } = require("./flows/custom-flows/flowMedias");
 const { flowChatDalle } = require("./flows/custom-flows/flowGenerateImages")
-
+const { flowBubble } = require("./flows/api-flows/flowBubble")
 
 /**
  * Funcion principal
@@ -41,6 +41,7 @@ const main = async () => {
     flowChatDalle(),
     flowERP(),
     flowRestaurant(),
+    flowBubble(),
   ]);
 
   const adapterProvider = createProvider(BaileysProvider);

@@ -44,4 +44,34 @@ const useDalle2 = async (prompt) => {
     }
 };
 
-module.exports = { useDalle3, useDalle2 };
+const completion = async (dataIn = '') => {
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+    const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: dataIn,
+        max_tokens: 256,
+        temperature: 0,
+    });
+
+    return response
+}
+
+const completionGTP4 = async (dataIn = '') => {
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+    const chatCompletion = await openai.createChatCompletion({
+        model: "gpt-4",
+        messages: [{ role: "user", content: dataIn }],
+        temperature: 0.2
+    });
+
+    return chatCompletion
+}
+
+
+module.exports = { useDalle3, useDalle2, completion, completionGTP4 };

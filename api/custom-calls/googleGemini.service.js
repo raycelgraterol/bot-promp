@@ -79,7 +79,7 @@ const geminiVision = async (imageBase64) => {
 
   } catch (e) {
     console.error('Error getting:', e);
-    throw e;
+    return "No puedo procesar esta imagen, intenga alguna otra diferente."
   }
 };
 
