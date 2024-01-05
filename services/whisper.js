@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 
 /**
  *
@@ -11,13 +11,11 @@ const voiceToText = async (path) => {
   }
 
   try {
-    const configuration = new Configuration({
+    const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
-    const openai = new OpenAIApi(configuration);
-    const resp = await openai.createTranscription(
-      fs.createReadStream(path),
-      "whisper-1"
+    const resp = await openai.audio.transcriptions.create(
+      { model: "whisper-1", file: fs.createReadStream(path) }
     );
 
     return resp.data.text;

@@ -1,14 +1,13 @@
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 
 const useDalle3 = async (prompt) => {
 
     try {
-        const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
-        const openai = new OpenAIApi(configuration);
+        const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
 
-        const response = await openai.createImage({
+        const response = await openai.images.generate({
             model: "dall-e-3",
             prompt: prompt,
             n: 1,
@@ -25,12 +24,11 @@ const useDalle3 = async (prompt) => {
 const useDalle2 = async (prompt) => {
 
     try {
-        const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
-        const openai = new OpenAIApi(configuration);
+        const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
 
-        const response = await openai.createImage({
+        const response = await openai.images.generate({
             model: "dall-e-2",
             prompt: prompt,
             n: 1,
@@ -45,11 +43,10 @@ const useDalle2 = async (prompt) => {
 };
 
 const completion = async (dataIn = '') => {
-    const configuration = new Configuration({
+    const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
     });
-    const openai = new OpenAIApi(configuration);
-    const response = await openai.createCompletion({
+    const response = await openai.completions.create({
         model: "text-davinci-003",
         prompt: dataIn,
         max_tokens: 256,
@@ -60,11 +57,10 @@ const completion = async (dataIn = '') => {
 }
 
 const completionGTP4 = async (dataIn = '') => {
-    const configuration = new Configuration({
+    const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
     });
-    const openai = new OpenAIApi(configuration);
-    const chatCompletion = await openai.createChatCompletion({
+    const chatCompletion = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [{ role: "user", content: dataIn }],
         temperature: 0.2
