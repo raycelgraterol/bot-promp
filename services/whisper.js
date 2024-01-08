@@ -14,11 +14,14 @@ const voiceToText = async (path) => {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
-    const resp = await openai.audio.transcriptions.create(
-      { model: "whisper-1", file: fs.createReadStream(path) }
-    );
 
-    return resp.data.text;
+    const transcription = await openai.audio.transcriptions.create({
+      file: fs.createReadStream(path),
+      model: "whisper-1",
+    });
+
+    return transcription.text;
+
   } catch (err) {
     console.log(err.response.data)
     return "ERROR";

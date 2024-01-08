@@ -37,15 +37,16 @@ module.exports = {
           for (let i = 0; i < totalArticles; i += 100) {
             const currentBatch = articles.slice(i, i + 100);
 
-            const check = await completionGTP4(`
-            Tengo la siguiente lista de articulos:
-            [ ${currentBatch} ]
-            ahora mis clientes haran busquedas y me daras los resultados que mas se relacionen.
-            Escribe los tittle reales de los articulo en la lista de articulos que se relacione con este texto: ${ctx.body}`);
+            // const check = await completionGTP4(`
+            // Tengo la siguiente lista de articulos:
+            // [ ${currentBatch} ]
+            // ahora mis clientes haran busquedas y me daras los resultados que mas se relacionen.
+            // Escribe los tittle reales de los articulo en la lista de articulos que se relacione con este texto: ${ctx.body}`);
 
-            const getCheck = check.data.choices[0].message.content;
+            // const getCheck = check.data.choices[0].message.content;
 
-            await flowDynamic(getCheck);
+            await flowDynamic("getCheck");
+            //await flowDynamic(getCheck);
           }
 
           await fallBack();

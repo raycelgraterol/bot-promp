@@ -1,5 +1,10 @@
 const axios = require("axios");
 
+const fs = require('fs');
+const os = require('os');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
+
 const getArticle = async (text) => {
   try {
     const generateContent = {
@@ -40,12 +45,27 @@ const getAllArticles = async () => {
       const results = axiosResult.data.response.results;
 
       // Append the current page of results to the array
-      allArticles.push(...results.map(article => article.Titulo));
+      allArticles.push(...results.map(article => ({ tittle: article.Titulo, id: article._id })));
 
       // Update cursor and remaining for the next request
       cursor += 100;
       remaining = axiosResult.data.response.remaining;
     }
+
+    const path = `${process.cwd()}/tmp/allArticles.csv`;
+
+    // Save the result in a CSV file
+    const csvWriter = createCsvWriter({
+      path: path,
+      header: [
+        { id: 'tittle', title: 'TITTLE' },
+        { id: 'id', title: 'ID' },
+      ]
+    });
+
+    csvWriter
+      .writeRecords(allArticles)
+      .then(() => console.log('The CSV file was written successfully'));
 
     return allArticles;
 

@@ -24,6 +24,7 @@ const { flowNotes } = require("./flows/custom-flows/flowNotes");
 const { flowMedias } = require("./flows/custom-flows/flowMedias");
 const { flowChatDalle } = require("./flows/custom-flows/flowGenerateImages")
 const { flowBubble } = require("./flows/api-flows/flowBubble")
+const { flowEmojis } = require("./flows/api-flows/flowEmojis")
 
 /**
  * Funcion principal
@@ -42,6 +43,7 @@ const main = async () => {
     flowERP(),
     flowRestaurant(),
     flowBubble(),
+    flowEmojis(),
   ]);
 
   const adapterProvider = createProvider(BaileysProvider);

@@ -4,8 +4,8 @@ const useDalle3 = async (prompt) => {
 
     try {
         const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
+            apiKey: process.env.OPENAI_API_KEY,
+        });
 
         const response = await openai.images.generate({
             model: "dall-e-3",
@@ -25,8 +25,8 @@ const useDalle2 = async (prompt) => {
 
     try {
         const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
+            apiKey: process.env.OPENAI_API_KEY,
+        });
 
         const response = await openai.images.generate({
             model: "dall-e-2",
@@ -37,8 +37,8 @@ const useDalle2 = async (prompt) => {
 
         return response.data.data[0];
     } catch (err) {
-        console.log(err.response.data)
-        return "ERROR";
+        console.log(err.message)
+        return "ERROR Generating image";
     }
 };
 
