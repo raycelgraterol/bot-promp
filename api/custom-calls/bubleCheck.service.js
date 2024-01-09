@@ -1,8 +1,6 @@
 const axios = require("axios");
-
 const fs = require('fs');
 const os = require('os');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 
 const getArticle = async (text) => {
@@ -45,29 +43,29 @@ const getAllArticles = async () => {
       const results = axiosResult.data.response.results;
 
       // Append the current page of results to the array
-      allArticles.push(...results.map(article => ({ tittle: article.Titulo, id: article._id })));
+      allArticles.push(...results.map(article => ({ text: `ID: ${article._id} : ${article.Titulo}` })));
 
       // Update cursor and remaining for the next request
       cursor += 100;
       remaining = axiosResult.data.response.remaining;
     }
 
-    const path = `${process.cwd()}/tmp/allArticles.csv`;
+    const chunk = allArticles.splice(0, 100);
+    const path = `${process.cwd()}/data/articles100.txt`;
 
-    // Save the result in a CSV file
-    const csvWriter = createCsvWriter({
-      path: path,
-      header: [
-        { id: 'tittle', title: 'TITTLE' },
-        { id: 'id', title: 'ID' },
-      ]
+    const file = fs.createWriteStream(path);
+
+    file.on('error', (err) => {
+      console.error(err);
     });
 
-    csvWriter
-      .writeRecords(allArticles)
-      .then(() => console.log('The CSV file was written successfully'));
+    chunk.forEach((v) => {
+      file.write(`${v.text}\n`);
+    });
 
-    return allArticles;
+    file.end();
+
+    return chunk;
 
   } catch (e) {
     console.error('Error getting articles:', e);
