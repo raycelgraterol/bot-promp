@@ -1,23 +1,23 @@
 const { addKeyword } = require("@bot-whatsapp/bot");
 const { useDalle2, useDalle3 } = require("../../api/custom-calls/openAICustom");
-const flowInit = require("../custom-flows/flowInit")
+const flowInit = require("./flowInit")
 
 /**
  * Exportamos
  * @returns
  */
 module.exports = {
-    flowChatDalle: () => {
-        return addKeyword("5", {
+    flowDalle3HD: () => {
+        return addKeyword("dall-e-3", {
             sensitive: true,
         })
             .addAction(async (ctx, { endFlow, flowDynamic }) => {
 
                 //Get number
-                console.log("Usando Dall-e 2")
+                console.log("Usando Dall-e 3")
             })
             .addAnswer(
-                `Puedes escribir y generar Imagenes con Dall-e 2...`,
+                `Puedes escribir y generar Imagenes con Dall-e 3...`,
                 { capture: true },
                 async (ctx, { gotoFlow, fallBack, flowDynamic }) => {
 
@@ -27,7 +27,7 @@ module.exports = {
                         return gotoFlow(flowInit);
                     }
 
-                    const resultImage = await useDalle2(ctx.body);
+                    const resultImage = await useDalle3(ctx.body);
 
                     await flowDynamic(ctx.body, {
                         media: resultImage.url,
