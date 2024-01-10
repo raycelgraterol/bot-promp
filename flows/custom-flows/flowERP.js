@@ -11,7 +11,7 @@ module.exports = {
       sensitive: true,
     })
       .addAction(async (ctx, { endFlow, flowDynamic }) => {
-        await flowDynamic("Esta opcion esta en proceso...")
+        await flowDynamic("Estamos construyendo una consulta sobre una base de datos con 700 articulos...")
 
         //Pending area to analyze
         const jid = ctx.key.remoteJid;
