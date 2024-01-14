@@ -20,11 +20,7 @@ module.exports = {
             
             const prettyText = await chatgptClass.handleMsgChatGPT(`Only returns the original formatted text to be sent by WhatsApp and add some emojis to the following text: '${text}'. `);
             await ctxFn.flowDynamic(prettyText.text);
-
-            const responseUseChat = await chatgptClass.handleMsgChatGPT(`genera una respuesta sobre esto: ${text}`);
-            await ctxFn.flowDynamic("Respuesta del chat: ");
-            await ctxFn.flowDynamic(responseUseChat.text);
-
+            
         });
     },
 };
