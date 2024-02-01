@@ -9,6 +9,7 @@ const flowInit = addKeyword([EVENTS.WELCOME, 'menu', 'salir', 'volver'])
       "*1* Conversar con Chat GPT-4.",
       "*2* Conversar con Gemini Google.",
       "*3* Conectar con ERP.",
+      "*4* Conectar con la Gran Brasa.",
       " ",
       "Envia una nota de VOZ 🔊 o una Imagen 📸 tambien podre ayudarte.",
       "Consulta Tasa Monitor o BCV. 💸",
