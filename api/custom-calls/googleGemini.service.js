@@ -27,7 +27,7 @@ const geminiVision = async (imageBase64) => {
   try {
     const generateContent = {
       method: 'post',
-      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      url: `https://generativelanguage.googleapis.com/v1/models/gemini-pro-vision:generateContent?key=${process.env.GEMINI_API_KEY}`,
       data: {
         "contents": [
           {

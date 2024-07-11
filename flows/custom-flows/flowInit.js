@@ -17,7 +17,7 @@ const flowInit = addKeyword([EVENTS.WELCOME, 'menu', 'salir', 'volver'])
       "Responda con el *NUMERO* de la opcion!"
     ],
     {
-      media: 'https://ivicsanttech.com/ivicsant-logo.png',
+      media: 'https://enlacedeportivo.com/ivicsant-logo.png',
     }
   ).addAction(async (ctx) => {
     console.log(`Connected phone: ${ctx.from}`);
