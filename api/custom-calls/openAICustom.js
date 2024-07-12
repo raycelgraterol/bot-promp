@@ -14,7 +14,7 @@ const useDalle3 = async (prompt) => {
             size: "1024x1024",
         });
 
-        return response.data.data[0];
+        return response.data[0];
     } catch (err) {
         console.log(err.response.data)
         return "ERROR";
@@ -24,6 +24,7 @@ const useDalle3 = async (prompt) => {
 const useDalle2 = async (prompt) => {
 
     try {
+
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
         });
@@ -35,7 +36,7 @@ const useDalle2 = async (prompt) => {
             size: "512x512",
         });
 
-        return response.data.data[0];
+        return response.data[0];
     } catch (err) {
         console.log(err.message)
         return "ERROR Generating image";

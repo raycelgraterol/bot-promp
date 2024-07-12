@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/d9c0e563-ad0c-41d8-8653-54b1041c8110/resourceGroups/ivicsantChatBot-rs/providers/Microsoft.Web/sites/ivicsantChatBot",
+    "appService.deploySubpath": "."
+}

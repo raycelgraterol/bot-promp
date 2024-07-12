@@ -23,6 +23,7 @@ const { flowRestaurant } = require("./flows/custom-flows/flowRestaurant");
 const { flowNotes } = require("./flows/custom-flows/flowNotes");
 const { flowMedias } = require("./flows/custom-flows/flowMedias");
 const { flowChatDalle } = require("./flows/custom-flows/flowGenerateImages")
+const { flowDalle3HD } = require("./flows/custom-flows/flowImagesHD")
 const { flowBubble } = require("./flows/api-flows/flowBubble")
 const { flowEmojis } = require("./flows/api-flows/flowEmojis")
 
@@ -40,6 +41,7 @@ const main = async () => {
     flowChatGPT(chatGPT),
     flowChatGemini(),
     flowChatDalle(),
+    flowDalle3HD(),
     flowERP(),
     flowRestaurant(),
     flowBubble(),

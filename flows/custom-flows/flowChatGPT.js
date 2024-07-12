@@ -23,7 +23,7 @@ module.exports = {
 
       })
       .addAnswer(
-        `Ya puedes escribir y conversar con Chat GPT...`,
+        `Ya puedes escribir y conversar con Chat GPT OPENAI...`,
         { capture: true },
         async (ctx, { gotoFlow, fallBack }) => {
 
